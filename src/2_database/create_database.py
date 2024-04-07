@@ -1,5 +1,3 @@
-"""Create database and tables for the project"""
-
 import json
 import logging
 import os.path
@@ -12,7 +10,7 @@ SQL_SCRIPT = "create_table.sql"
 if not pkg_resources.resource_exists(__name__, CONFIG_FILE):
     raise FileNotFoundError(f"File {CONFIG_FILE} not found")
 with pkg_resources.resource_stream(__name__, CONFIG_FILE) as f:
-    config = json. load(f)
+    config = json.load(f)
 
 logging.basicConfig(
     filename=os.path.join(config["logs_dir"], 
@@ -58,3 +56,6 @@ def main():
     create_database()
     sql_script = load_sql_script()
     create_tables(sql_script)
+
+if __name__ == "__main__":
+    main()
